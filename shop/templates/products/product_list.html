@@ -1,0 +1,54 @@
+{% for product in products %}
+    <div class="product_styling">
+        <div class="flex_child">
+            <a href="{{ url_for('product', product_id=product.id) }}">
+                <img class="product_img" src="{{ url_for('static', filename='img/products/' + product.feature_image + '.jpg') }}">
+            </a>
+        </div>
+        <div class="flex_child">
+            <p>
+                {% if product.user == current_user %}
+                    <a class="product_ink" href="{{ url_for('update_product', product_id=product.id) }}">Update now</a>
+                    <!-- <button type="button">Delete</button> -->
+                </br>
+                </br>
+                {% endif %}
+
+                <a class="product_heading" href="{{ url_for('product', product_id=product.id) }}">{{ product.title.capitalize() }}</a>
+                <a class="product_heading" href="{{ url_for('product', product_id=product.id) }}">
+                    <span class="product_link" style="padding-left: 10px;">£{{ "%.2f"|format(product.price) }}</span>
+                </a>
+                <br>
+                
+                {% if product.pop_number > 0 %}
+                    <br>
+                    Pop No. {{ product.pop_number }}
+                {% endif %}
+                <br>
+                Remaining Stock: {{ product.stock }}
+            </p>
+            <p>{{ product.short_description }}</p>
+            <form action="{{ url_for('add_to_cart') }}" method="POST">
+                {% if product.stock > 0 %}
+                    {{ form.csrf_token }}
+        
+                    {{ form.quantity(value=1, hidden='True') }}
+                    {{ form.id(value=product.id) }}
+
+                    <button type="submit">Add to Cart</button>
+                {% endif %}
+            </form>
+            <br>
+            <form action="{{ url_for('add_to_wish_list') }}" method="POST">
+                {% if product.stock > 0 %}
+                    {{ form.csrf_token }}
+        
+                    {{ form.quantity(value=1, hidden='True') }}
+                    {{ form.id(value=product.id) }}
+
+                    <button type="submit">Add to Wish List</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endfor %}

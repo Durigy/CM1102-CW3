@@ -1,0 +1,190 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        <div >
+            <img src="{{ profile_image }}" width="125" style="border-radius: 20px;">
+            <div>
+                <h2>{{ current_user.firstname }} {{ current_user.lastname }}</h2>
+            </div>
+        </div>
+        
+        <div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <!-- Reference: https://www.w3schools.com/tags/tag_fieldset.asp -->
+                <fieldset> 
+                    <legend>Update Account Info</legend>
+                    <div>
+                        {{ form.firstname.label() }}
+                        <br>
+                        {% if form.firstname.errors %}
+                        {{ form.firstname()}}
+                        <div>
+                            {% for error in form.firstname.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}                        
+                        {{ form.firstname() }}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div>
+                        {{ form.lastname.label() }}
+                        <br>
+                        {% if form.lastname.errors %}
+                        {{ form.lastname()}}
+                        <div>
+                            {% for error in form.lastname.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}                        
+                        {{ form.lastname() }}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div>
+                        {{ form.username.label() }}
+                        <br>
+                        {% if form.username.errors %}
+                            {{ form.username()}}
+                            <div>
+                                {% for error in form.username.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.username() }}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div>
+                        {{ form.email.label() }}
+                        <br>
+                        {% if form.email.errors %}
+                        {{ form.email()}}
+                        <div>
+                            {% for error in form.email.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}                        
+                        {{ form.email() }}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div>
+                        {{ form.address.label() }}
+                        <br>
+                        {% if form.address.errors %}
+                        {{ form.address()}}
+                        <div>
+                            {% for error in form.address.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}                        
+                        {{ form.address() }}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div>
+                        {{ form.address_postcode.label() }}
+                        <br>
+                        {% if form.address_postcode.errors %}
+                        {{ form.address_postcode()}}
+                        <div>
+                            {% for error in form.address_postcode.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}                        
+                        {{ form.address_postcode() }}
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div>
+                        {{ form.picture.label() }}
+                        <br>
+                        {{ form.picture() }}
+                        
+                        {% if form.picture.errors %}
+                        <div>
+                            {% for error in form.picture.errors %}
+                            <span style="color: red;">{{ error }}</span></br>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <br>
+                <div>
+                    {{ form.submit( class='btn' ) }}
+                </div>
+            </form>
+        </div>
+    </div>
+    
+<h2>Wish List</h2>
+{% if products|length == 0 %}
+<h5>There are no products in your Wish List</h5>
+{% else %}
+        {% for product in products %}
+            <div class="product_styling">
+                <div class="flex_child">
+                    <a href="{{ url_for('product', product_id=product.id) }}">
+                        <img class="product_img" src="{{ url_for('static', filename='img/products/' + product.feature_image + '.jpg') }}">
+                    </a>
+                </div>
+                <div class="flex_child">
+                    <p>
+                        {% if product.user == current_user %}
+                            <a class="product_ink" href="{{ url_for('update_product', product_id=product.id) }}">Update now</a>
+                            <!-- <button type="button">Delete</button> -->
+                        </br>
+                        </br>
+                        {% endif %}
+
+                        <a class="product_heading" href="{{ url_for('product', product_id=product.id) }}">{{ product.title.capitalize() }}</a>
+                        <a class="product_heading" href="{{ url_for('product', product_id=product.id) }}">
+                            <span class="product_link" style="padding-left: 10px;">£{{ "%.2f"|format(product.price) }}</span>
+                        </a>
+                        <br>
+                        
+                        {% if product.pop_number > 0 %}
+                            <br>
+                            Pop No. {{ product.pop_number }}
+                        {% endif %}
+                        <br>
+                        Remaining Stock: {{ product.stock }}
+                    </p>
+                    <p>{{ product.short_description }}</p>
+                    <form action="{{ url_for('add_to_cart') }}" method="POST">
+                        {% if product.stock > 0 %}
+                            {{ form2.csrf_token }}
+                
+                            {{ form2.quantity(value=1, hidden='True') }}
+                            {{ form2.id(value=product.id) }}
+
+                            <button type="submit">Add to Cart</button>
+                        {% endif %}
+                    </form>
+                    <br>
+                    <form action="{{ url_for('del_from_wish_list') }}" method="POST">
+                        {% if product.stock > 0 %}
+                            {{ form2.csrf_token }}
+                
+                            {{ form2.quantity(value=1, hidden='True') }}
+                            {{ form2.id(value=product.id) }}
+
+                            <button type="submit">Remove  from Wish List</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}
+
+
+{% endblock content %}

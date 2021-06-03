@@ -1,0 +1,14 @@
+{% extends "admin/admin_area.html" %}
+{% block admin_content %}
+
+<!-- <h2>Store Info</h2> -->
+
+<span>Total Products: {{ products|length }} | Live Products: {{ stock }} | Out of Stock: {{ stock_out }} | Draft Products: {{ draft }} | Total Orders: #</span>
+
+
+<br>
+<br>
+
+<h2>Current Orders</h2>
+
+{% endblock admin_content %}

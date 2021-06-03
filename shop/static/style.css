@@ -1,0 +1,174 @@
+html, body, header {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    font-family: arial, sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    background-color: #fafafa;
+}
+
+#container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    z-index: 999;
+    background-color: #aaa;
+}
+
+nav {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
+
+nav li {
+    display: inline;
+}
+
+nav a {
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.product_styling {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #ddd;
+    border-radius: 7px;
+    display: flex;
+    position: relative;
+}
+
+.product_link {
+    color: #468541;
+    text-decoration: none;
+}
+
+.product_link:hover {
+    text-decoration: none;
+}
+
+.product_img {
+    width: 150px;
+    border-radius: 20px;
+    color: #468541;
+    text-decoration: none;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+.product_heading {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+}
+
+.product_heading:hover {    
+    color: #468541;
+    text-decoration: none;
+}
+
+.flex_child {
+    flex: 1;
+    /* border: 2px solid yellow; */
+}  
+
+.flex_child:first-child {
+    flex: 1;
+    margin-right: 20px;
+    min-width: 180px;
+} 
+
+.flex_child:nth-child(2) {
+    flex: 4;
+} 
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    text-align: center;
+    border: 1px solid white;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #efefef;
+}
+
+th {
+    background-color:white;
+}
+
+.flashes {
+    padding: 15px;
+    background-color: #feb3b3;
+    color: black;
+    /* border: 2px solid red;
+    border-radius: 7px; */
+    border-radius: 7px;
+    text-align: center;
+}
+
+button {
+    border: none;
+    padding: 7px 15px;
+    background-color: #6789e6;
+    border-radius: 5px;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+a {
+    color: #6789e6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn {
+    border: none;
+    padding: 7px 15px;
+    background-color: #6789e6;
+    border-radius: 5px;
+    color: white;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.buyBTN {
+    background-color: green;
+}

@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if product_list|length > 0 %}
+    <table>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Discont</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Remove</th>
+        </tr>
+        {% for item in product_list %}
+            <tr>
+                <!-- Product Feature Image -->
+                <td>
+                    <a class="product_link" href="{{ url_for('product', product_id=item[0]) }}">
+                        <img src="{{ url_for('static', filename='img/products/' + item[1] + '.jpg') }}" height="100px" style="border-radius: 20px;">
+                    </a>
+                </td>
+                
+                <!-- Product Title -->
+                <td>
+                    <a class="product_link" href="{{ url_for('product', product_id=item[0]) }}">
+                        {{ item[2].capitalize() }}
+                    </a>
+                </td>
+
+                <!-- Product Price -->
+                <td>£{{ "%.2f"|format(item[3]) }}</td>
+
+                <!-- Discount -->
+                <td>{{ item[4] }}%</td>
+
+                <!-- Change/display item quantity -->
+                <td>
+                    <form action="{{ url_for('update_cart') }}" method="POST">
+                        {% if item[7] > 0 %}
+                            {{ form.csrf_token }}
+
+                            {{ form.quantity(type='number', min=0, max=item[7], step=1, value=item[5]) }}
+                            {{ form.id(value=item[0]) }}
+
+                            <button type="submit">Update Cart</button>
+                        {% else %}
+                            <span style="color: red;">PLEASE REMOVE ITEM</span>
+                        {% endif %}
+                    </form>
+                </td>
+
+                <!-- Total Price -->
+                <td>£{{ "%.2f"|format(item[6]) }}</td>
+                
+                <!-- Remove from cart -->
+                <td>
+                    <form action="{{ url_for('update_cart') }}" method="POST">
+                            {{ form.csrf_token }}
+                
+                            {{ form.quantity(value=0, hidden='True') }}
+                            {{ form.id(value=item[0]) }}
+
+                            <button type="submit">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <div>
+        <span><a href="{{ url_for('clear_cart') }}">Clear Cart</a></span>
+        <span style="float: right;"><a href="{{ url_for('check_out') }}"><button class="buyBTN">Buy Now</button></a></span>
+    </div>
+    <h3>Total: £{{ "%.2f"|format(grand_price) }}</h3>
+{% else %}
+    <h2>You cart is empty</h2>
+{% endif %}
+<br>
+{% if current_user.is_authenticated %}
+
+<h2>Wish List</h2>
+{% if wish_list|length == 0 %}
+<h5>There are no products in your Wish List</h5>
+{% else %}
+        {% for item in wish_list %}
+            <div class="product_styling">
+                <div class="flex_child">
+                    <a href="{{ url_for('product', product_id=item.id) }}">
+                        <img class="product_img" src="{{ url_for('static', filename='img/products/' + item.feature_image + '.jpg') }}">
+                    </a>
+                </div>
+                <div class="flex_child">
+                    <p>
+                        {% if item.user == current_user %}
+                            <a class="product_ink" href="{{ url_for('update_product', product_id=item.id) }}">Update now</a>
+                            <!-- <button type="button">Delete</button> -->
+                        </br>
+                        </br>
+                        {% endif %}
+
+                        <a class="product_heading" href="{{ url_for('product', product_id=item.id) }}">{{ item.title.capitalize() }}</a>
+                        <a class="product_heading" href="{{ url_for('product', product_id=item.id) }}">
+                            <span class="product_link" style="padding-left: 10px;">£{{ "%.2f"|format(item.price) }}</span>
+                        </a>
+                        <br>
+                        
+                        {% if item.pop_number > 0 %}
+                            <br>
+                            Pop No. {{ item.pop_number }}
+                        {% endif %}
+                        <br>
+                        Remaining Stock: {{ item.stock }}
+                    </p>
+                    <p>{{ item.short_description }}</p>
+                    <form action="{{ url_for('add_to_cart') }}" method="POST">
+                        {% if item.stock > 0 %}
+                            {{ form.csrf_token }}
+                
+                            {{ form.quantity(value=1, hidden='True') }}
+                            {{ form.id(value=item.id) }}
+
+                            <button type="submit">Add to Cart</button>
+                        {% endif %}
+                    </form>
+                    <br>
+                    <form action="{{ url_for('del_from_wish_list') }}" method="POST">
+                        {% if item.stock > 0 %}
+                            {{ form.csrf_token }}
+                
+                            {{ form.quantity(value=1, hidden='True') }}
+                            {{ form.id(value=item.id) }}
+
+                            <button type="submit">Remove  from Wish List</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endif %}
+
+<h3>Recommended Products</h3>
+
+{% include '/products/product_list.html' %}
+
+{% endblock %}

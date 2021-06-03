@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% if current_user.is_authenticated %}
+        <h1>Hello, {{ current_user.username }}!</h1>
+    {% else %}
+        <h1>Hello, Friend</h1>
+    {% endif %}
+
+    <span>Filter By:</span>
+    <span><a href="{{ url_for('index')}}">Newest</a></span>
+    <span style="padding-left: 10px;"></span><a href="{{ url_for('filter_title')}}">Title</a></span>
+    <span style="padding-left: 10px;"></span><a href="{{ url_for('filter_price')}}">Price</a></span>
+    <span style="padding-left: 10px;"></span><a href="{{ url_for('filter_by', filter_type='category', name='marvel') }}">Marvel</a></span>
+    <span style="padding-left: 10px;"></span><a href="{{ url_for('filter_by', filter_type='franchise', name='dc') }}">DC</a></span>
+    
+    <h2>Filtered by: {{ heading.capitalize() }}</h2>
+    
+    {% include '/products/product_list.html' %}
+
+{% endblock %}

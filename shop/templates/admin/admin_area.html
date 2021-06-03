@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Welcome to the Admin Area, {{ current_user.username }}</h1>
+
+    <span><a href="{{ url_for('admin')}}">Home</a></span>
+    <span style="padding-left: 10px;"></span><a href="{{ url_for('admin_all_products')}}">Products</a></span>
+    <span style="padding-left: 10px;"></span><a href="{{ url_for('admin_all_draft_products')}}">Drafts</a></span>
+    <span style="padding-left: 10px;"></span><a href="{{ url_for('admin_all_low_stock_products')}}">Low Stock</a></span>
+    <span style="padding-left: 10px;"><a href="{{ url_for('create_product')}}">Add Product</a></span>
+    <span style="padding-left: 10px;"><a href="{{ url_for('add_category')}}">Add Category</a></span>
+    <span style="padding-left: 10px;"><a href="{{ url_for('add_franchise')}}">Add Franchise</a></span>
+    <span style="padding-left: 10px;"><a href="{{ url_for('add_box_size')}}">Add Box Size</a></span>
+    <div id="admin_content">
+        <br>
+        {% block admin_content %}
+
+        {% endblock %}
+    </div>
+{% endblock %}

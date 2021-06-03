@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+    <img src="{{ url_for('static', filename='img/products/' + product.feature_image + '.jpg') }}">
+    <br>
+    {% if product.prduct_image_1 != '' %}
+    <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_1 + '.jpg') }}" height="150" >
+    {% endif %}
+    {% if product.prduct_image_2 != '' %}
+    <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_2 + '.jpg') }}" height="150">
+    {% endif %}
+    {% if product.prduct_image_3 != '' %}
+    <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_3 + '.jpg') }}"  height="150">
+    {% endif %}
+    {% if product.prduct_image_4 != '' %}
+    <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_4 + '.jpg') }}"  height="150">
+    {% endif %}
+    {% if product.prduct_image_5 != '' %}
+    <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_5 + '.jpg') }}"  height="150">
+    {% endif %}
+    </br>
+
+    {% if product.user == current_user %}
+        <br>
+        <a class="product_link" href="{{ url_for('update_product', product_id=product.id) }}">Update now</a>
+        <!-- <button type="button">Delete</button> -->
+    {% endif %}
+
+    <h2>Title: {{ product.title.capitalize() }}</h2>
+
+    {% if product.discount_amount != 0 %}
+        <span style='color:red;text-decoration:line-through'>
+            <span style='color:black'>Price: £{{ "%.2f"|format(product.price) }}</span>
+        </span>
+        <p>Discount: {{ product.discount_amount }}% off</p>
+        <p>Final Price: £{{ "%.2f"|format(final_price) }}</p>
+    {% else %}
+        <p>Price: £{{ "%.2f"|format(product.price) }}</p>
+    {% endif %}
+
+    <!-- <p>Date Listed: {{ product.date_listed }}</p> -->
+    {% if product.pop_number > 0 %}
+        <br>
+        Pop No. {{ product.pop_number }}
+    {% endif %}
+    <p>Pop Category: {{ product.pop_category }}</p>
+    <p>Franchise: {{ product.franchise }}</p>
+    <p>Size: {{ product.pop_box_size.name }}</p>
+    <p>Width: {{ product.pop_box_size.width }}cm | Height: {{ product.pop_box_size.height }}cm | Depth: {{ product.pop_box_size.depth }}cm</p>
+
+    {% if product.vaulted %}
+        <p>This Pop has been Vaulted - This means it is nolonger being made</p>
+    {% endif %}
+    <p>Description: {{ product.long_description.capitalize() }}</p>
+    
+    <p>Stock: {{ product.stock }}</p>
+    <!-- <a href="#">Add to Cart</a> -->
+
+    <form action="{{ url_for('add_to_cart') }}" method="POST">
+        {% if product.stock > 0 %}
+            {{ form.csrf_token }}
+
+            {{ form.quantity(type='number', min=1, max=product.stock, step=1, value=1) }}
+            {{ form.id(value=product.id) }}
+            
+            <button type="submit">Add to Cart</button>
+        {% endif %}
+    </form>
+    <br>
+    <h3>Other related Products</h3>
+            
+    {% if products.count() == 0 %}
+        <h5>There are no other products related to this one</h5>
+    {% else %}
+        {% include '/products/product_list.html' %} 
+    {% endif %}
+{% endblock content %}

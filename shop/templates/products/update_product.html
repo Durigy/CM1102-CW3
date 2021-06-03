@@ -1,0 +1,304 @@
+{% extends "admin/admin_area.html" %}
+{% block admin_content %}
+    <div>
+        <div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <!-- Reference: https://www.w3schools.com/tags/tag_fieldset.asp -->
+                <fieldset> 
+                    <legend>{{ legend }}</legend>
+                    <div>
+                        {{ form.title.label() }}
+                        
+                        </br>
+    
+                        {% if form.title.errors %}
+                            {{ form.title()}}
+                            <div>
+                                {% for error in form.title.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.title() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.price.label() }}
+    
+                        </br>
+
+                        {% if form.price.errors %}
+                            {{ form.price()}}
+                            <div>
+                                {% for error in form.price.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.price() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.discount_amount.label() }}
+    
+                        </br>
+
+                        {% if form.discount_amount.errors %}
+                            {{ form.discount_amount()}}
+                            <div>
+                                {% for error in form.discount_amount.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.discount_amount() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.stock.label() }}
+    
+                        </br>
+
+                        {% if form.stock.errors %}
+                            {{ form.stock()}}
+                            <div>
+                                {% for error in form.stock.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.stock() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.pop_number.label() }}
+    
+                        </br>
+
+                        {% if form.pop_number.errors %}
+                            {{ form.pop_number()}}
+                            <div>
+                                {% for error in form.pop_number.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.pop_number() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.feature_image.label() }}
+                        </br>
+                        {{ form.feature_image() }}
+                        
+                        {% if form.feature_image.errors %}
+                            <div>
+                                {% for error in form.feature_image.errors %}
+                                    <span style="color: red;">{{ error }}</span></br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <br>
+                        {% if product.feature_image != '' %}
+                            <img src="{{ url_for('static', filename='img/products/' + product.feature_image + '.jpg') }}" height=150>
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.prduct_image_1.label() }}
+                        </br>
+                        {{ form.prduct_image_1() }}
+                        
+                        {% if form.prduct_image_1.errors %}
+                            <div>
+                                {% for error in form.prduct_image_1.errors %}
+                                    <span style="color: red;">{{ error }}</span></br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <br>
+                        {% if product.prduct_image_1 != '' %}
+                            <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_1 + '.jpg') }}" height=150>
+                            <br>
+                            {{ form.remove_prduct_image_1() }}
+                            {{ form.remove_prduct_image_1.label() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.prduct_image_2.label() }}
+                        </br>
+                        {{ form.prduct_image_2() }}
+                        
+                        {% if form.prduct_image_2.errors %}
+                            <div>
+                                {% for error in form.prduct_image_2.errors %}
+                                    <span style="color: red;">{{ error }}</span></br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <br>
+                        {% if product.prduct_image_2 != '' %}
+                            <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_2 + '.jpg') }}" height=150>
+                            <br>
+                            {{ form.remove_prduct_image_2() }}
+                            {{ form.remove_prduct_image_2.label() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.prduct_image_3.label() }}
+                        </br>
+                        {{ form.prduct_image_3() }}
+                        
+                        {% if form.prduct_image_3.errors %}
+                            <div>
+                                {% for error in form.prduct_image_3.errors %}
+                                    <span style="color: red;">{{ error }}</span></br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <br>
+                        {% if product.prduct_image_3 != '' %}
+                            <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_3 + '.jpg') }}" height=150>
+                            <br>
+                            {{ form.remove_prduct_image_3() }}
+                            {{ form.remove_prduct_image_3.label() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.prduct_image_4.label() }}
+                        </br>
+                        {{ form.prduct_image_4() }}
+                        
+                        {% if form.prduct_image_4.errors %}
+                            <div>
+                                {% for error in form.prduct_image_4.errors %}
+                                    <span style="color: red;">{{ error }}</span></br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <br>
+                        {% if product.prduct_image_4 != '' %}
+                            <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_4 + '.jpg') }}" height=150>
+                            <br>
+                            {{ form.remove_prduct_image_4() }}
+                            {{ form.remove_prduct_image_4.label() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.prduct_image_5.label() }}
+                        </br>
+                        {{ form.prduct_image_5() }}
+                        
+                        {% if form.prduct_image_5.errors %}
+                            <div>
+                                {% for error in form.prduct_image_5.errors %}
+                                    <span style="color: red;">{{ error }}</span></br>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <br>
+                        {% if product.prduct_image_5 != '' %}
+                            <img src="{{ url_for('static', filename='img/products/' + product.prduct_image_5 + '.jpg') }}" height=150>
+                            <br>
+                            {{ form.remove_prduct_image_5() }}
+                            {{ form.remove_prduct_image_5.label() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.short_description.label() }}
+    
+                        </br>
+
+                        {% if form.short_description.errors %}
+                            {{ form.short_description()}}
+                            <div>
+                                {% for error in form.short_description.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.short_description() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.long_description.label() }}
+    
+                        </br>
+
+                        {% if form.long_description.errors %}
+                            {{ form.long_description()}}
+                            <div>
+                                {% for error in form.long_description.errors %}
+                                    <span style="color: red;">{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}                        
+                            {{ form.long_description() }}
+                        {% endif %}
+                    </div>
+                    </br>
+                    <div>
+                        <label for="category">Category *</label>
+                        <br>
+                        <select name="category" id="category" required>
+                            <option value="">Select Category</option>
+                            {% for category in pop_categorys %}
+                                <option value="{{ category.id }}" {% if (category.id == pop_category_preset) %} selected {% endif %}>{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </br>
+                    <div>
+                        <label for="franchise">Franchise *</label>
+                        <br>
+                        <select name="franchise" id="franchise" required>
+                            <option value="">Select Category</option>
+                            {% for franchise in franchises %}
+                                <option value="{{ franchise.id }}" {% if (franchise.id == franchise_preset) %} selected {% endif %}>{{ franchise.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </br>
+                    <div>
+                        <label for="pop_box_size">Box Size *</label>
+                        <br>
+                        <select name="pop_box_size" id="pop_box_size" required>
+                            <option value="">Select Box size</option>
+                            {% for pop_box_size in pop_box_sizes %}
+                                <option value="{{ pop_box_size.id }}" {% if (pop_box_size.id == pop_box_size_preset) %} selected {% endif %}>{{ pop_box_size.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.vaulted() }}
+                        {{ form.vaulted.label() }}
+                    </div>
+                    </br>
+                    <div>
+                        {{ form.is_draft() }}
+                        {{ form.is_draft.label() }}
+                    </div>
+                </fieldset>
+
+                </br>
+
+                <div>
+                    {{ form.submit( class='btn' ) }}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock admin_content %}

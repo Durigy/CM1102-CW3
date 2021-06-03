@@ -1,0 +1,16 @@
+ Volume in drive C is Local Disk
+ Volume Serial Number is 82A6-EE0C
+
+ Directory of C:\Users\alex\OneDrive\MS Laptop\Documents\Cardiff Uni\CM1102 - Web Applications\Git_repo\cm1102-cw3-flask-shop
+
+12/05/2021  15:48    <DIR>          .
+12/05/2021  15:48    <DIR>          ..
+08/04/2021  14:47    <DIR>          .git
+03/04/2021  16:14                31 .gitignore
+12/05/2021  15:48                 0 listing.txt
+03/04/2021  16:26               458 requirements.txt
+08/04/2021  14:44    <DIR>          shop
+05/04/2021  15:34    <DIR>          venv
+03/04/2021  17:37                96 wsgi.py
+               4 File(s)            585 bytes
+               5 Dir(s)  190,207,750,144 bytes free

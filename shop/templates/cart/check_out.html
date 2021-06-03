@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <!-- Reference: https://www.w3schools.com/tags/tag_fieldset.asp -->
+            <fieldset>
+                <legend>{{ legend }}</legend>
+                <h3>Personal Details</h3>
+                <div>
+                    {{ form.first_name.label() }}
+                
+                    </br>
+                    
+                    {% if form.first_name.errors %}
+                        {{ form.first_name()}}
+                        <div>
+                            {% for error in form.first_name.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}                        
+                        {{ form.first_name() }}
+                    {% endif %}
+                </div>
+                </br>
+                <div>
+                    {{ form.last_name.label() }}
+                
+                    </br>
+                
+                    {% if form.last_name.errors %}
+                        {{ form.last_name()}}
+                        <div>
+                            {% for error in form.last_name.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}                        
+                        {{ form.last_name() }}
+                    {% endif %}
+                </div>
+                </br>
+                <div>
+                    {{ form.email.label() }}
+                
+                    </br>
+                
+                    {% if form.email.errors %}
+                        {{ form.email()}}
+                        <div>
+                            {% for error in form.email.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}                        
+                        {{ form.email() }}
+                    {% endif %}
+                </div>
+                <h3>Address</h3>
+                <div>
+                    {{ form.address_first_line.label() }}
+                    <br>
+                    {% if form.address_first_line.errors %}
+                    {{ form.address_first_line()}}
+                    <div>
+                        {% for error in form.address_first_line.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}                        
+                    {{ form.address_first_line() }}
+                    {% endif %}
+                </div>
+                <br>
+                <div>
+                    {{ form.address_second_line.label() }}
+                    <br>
+                    {% if form.address_second_line.errors %}
+                    {{ form.address_second_line()}}
+                    <div>
+                        {% for error in form.address_second_line.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}                        
+                    {{ form.address_second_line() }}
+                    {% endif %}
+                </div>
+                <br>
+                <div>
+                    {{ form.address_city.label() }}
+                    <br>
+                    {% if form.address_city.errors %}
+                    {{ form.address_city()}}
+                    <div>
+                        {% for error in form.address_city.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}                        
+                    {{ form.address_city() }}
+                    {% endif %}
+                </div>
+                <br>
+                <div>
+                    {{ form.address_country.label() }}
+                    <br>
+                    {% if form.address_country.errors %}
+                    {{ form.address_country()}}
+                    <div>
+                        {% for error in form.address_country.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}                        
+                    {{ form.address_country() }}
+                    {% endif %}
+                </div>
+                <br>
+                <div>
+                    {{ form.address_postcode.label() }}
+                    <br>
+                    {% if form.address_postcode.errors %}
+                    {{ form.address_postcode()}}
+                    <div>
+                        {% for error in form.address_postcode.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}                        
+                    {{ form.address_postcode() }}
+                    {% endif %}
+                </div>
+                <h3>Payment</h3>
+                <div>
+                    {{ form.card_number.label() }}
+                
+                    </br>
+                
+                    {% if form.card_number.errors %}
+                        {{ form.card_number()}}
+                        <div>
+                            {% for error in form.card_number.errors %}
+                                <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}                        
+                        {{ form.card_number() }}
+                    {% endif %}
+                </div>
+            </fieldset>
+
+            </br>
+            
+            <div>
+                {{ form.submit( class='btn' ) }}
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "admin/simple_add.html" %}
+{% block simple_add %}
+    <div>
+        {{ form.name.label() }}
+        
+        <br>
+
+        {% if form.name.errors %}
+            {{ form.name()}}
+            <div>
+                {% for error in form.name.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}                        
+            {{ form.name() }}
+        {% endif %}
+    </div>
+    <br>
+{% endblock simple_add %}

@@ -1,0 +1,71 @@
+{% extends "admin/simple_add.html" %}
+{% block simple_add %}
+    <div>
+        {{ form.name.label() }}
+        
+        <br>
+
+        {% if form.name.errors %}
+            {{ form.name()}}
+            <div>
+                {% for error in form.name.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}                        
+            {{ form.name() }}
+        {% endif %}
+    </div>
+    <br>
+    <div>
+        {{ form.width.label() }}
+        
+        <br>
+
+        {% if form.width.errors %}
+            {{ form.width()}}
+            <div>
+                {% for error in form.width.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}                        
+            {{ form.width() }}
+        {% endif %}
+    </div>
+    <br>
+    <div>
+        {{ form.height.label() }}
+        
+        <br>
+
+        {% if form.height.errors %}
+            {{ form.height()}}
+            <div>
+                {% for error in form.height.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}                        
+            {{ form.height() }}
+        {% endif %}
+    </div>
+    <br>
+    <div>
+        {{ form.depth.label() }}
+        
+        <br>
+
+        {% if form.depth.errors %}
+            {{ form.depth()}}
+            <div>
+                {% for error in form.depth.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}                        
+            {{ form.depth() }}
+        {% endif %}
+    </div>
+    <br>
+{% endblock simple_add %}

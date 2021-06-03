@@ -1,0 +1,34 @@
+{% extends "admin/admin_area.html" %}
+{% block admin_content %}
+    <div>
+        <div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <!-- Reference: https://www.w3schools.com/tags/tag_fieldset.asp -->
+                <fieldset> 
+                    <br>
+                    <legend>{{ legend }}</legend>
+                    {% block simple_add %}
+
+                    {% endblock simple_add %}
+                </fieldset> 
+                    <br>
+                <div>
+                    {{ form.submit( class='btn' ) }}
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h3>List of all {{ items }}</h3>
+
+{% for item in list_display %}
+    <div class="product_styling">
+            Name: {{ item.name }}
+            {% if items == 'Box Sizes' %}
+                | Width: {{item.width}}cm | Height: {{item.height}}cm | Depth: {{item.depth}}cm
+            {% endif %}
+    </div>
+{% endfor %}
+
+{% endblock admin_content %}

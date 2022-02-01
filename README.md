@@ -30,7 +30,7 @@ SECRET_KEY = '<- add secret key here ->'
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://<- DB Password ->@<- DB domain/IP (localhost normally) ->/<- DB Name ->'
 ```
 
-> database_uri: replace the <- -> with the correct info
+> SQLALCHEMY_DATABASE_URI: replace the <- -> with the correct info
 
 or
 

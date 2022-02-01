@@ -37,12 +37,12 @@ or
 **change the config settings to something more relevant**
 
 app.config['SECRET_KEY'] = *db_var.SECRET_KEY*
-app.config['SQLALCHEMY_DATABASE_URI'] = *db_var.SQLALCHEMY_DATABASE_URI*
 
+app.config['SQLALCHEMY_DATABASE_URI'] = *db_var.SQLALCHEMY_DATABASE_URI*
 
 -----------------------------------------------------
 
-### secret key generation  
+### Secret key generation  
 Use the following python commands to generate a secret key:
 
     > python
@@ -53,7 +53,7 @@ Use the following python commands to generate a secret key:
 
 -----------------------------------------------------
 
-### To add the tables to your local database for testing for example
+### To add the tables to your local testing database, for example
 you can use the following commands:
 
     > python
